@@ -1,0 +1,18 @@
+{
+  "name": "recladebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Orangalo",
+  "license": "ISC",
+  "dependencies": {
+    "pngjs-image": "^0.11.7",
+    "pnglib": "0.0.1"
+  },
+  "devDependencies": {
+    "pngjs-image": "^0.11.7"
+  }
+}
