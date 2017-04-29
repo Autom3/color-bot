@@ -11,7 +11,11 @@ const commands = [
 	new Command('scheme', funcs.randomScheme, "Generate <count> of nice-looking color-schemeish colors"),
 	new Command('idea', funcs.getIdea, "Generate random drawing ideas"),
 	new Command('challenge', funcs.challenge, "Generate random drawing ideas with <count> random colors"),
-	new Command('ask', funcs.ask, "woof")
+	new Command('ask', funcs.ask, "woof"),
+	new Command('idiot', funcs.idiot, "idiot", ['292645209672515584']),
+	new Command('item', funcs.nameify, "you are wat u say u r", ['292645209672515584', '283009672028487681']),
+	new Command('chucknorris', funcs.chucknorris, "CHUCK NORRIS"),
+	new Command('ban', funcs.ban, 'Ban the user', ['292645209672515584', '283009672028487681']),
 ];
 
 // Check for commands
@@ -20,8 +24,12 @@ client.on('message', msg => {
 		funcs.help(msg, commands, prefix);
 	}
 	for (let cmd of commands) {
-		if (msg.content.toLowerCase().indexOf(prefix + cmd.name) === 0) {
-			cmd.execute(msg);
+		if (msg.content.toLowerCase().indexOf(prefix + cmd.name.toLowerCase()) === 0) {
+			if (cmd.servers.length == 0) {
+				cmd.execute(msg);
+			} else if (cmd.servers.indexOf(msg.guild.id) != -1) {
+				cmd.execute(msg);
+			}
 		}
 	}
 });
@@ -32,6 +40,11 @@ client.on("ready", () => {
 		}
 	});
 	console.log("READY!");
-})
+});
+client.on("guildMemberAdd", member => {
+	if (member.guild.id != '246366162282086400') {
+		member.guild.defaultChannel.sendMessage(`Welcome ${member.displayName} to the "${member.guild.name} server!"`);
+	}
+});
 
 client.login(Config.token);

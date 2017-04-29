@@ -1,6 +1,7 @@
 const Color = require('./color.js'),
 	PNGImage = require('pngjs-image'),
-	words = require('./words.js');
+	words = require('./words.js'),
+	request = require('request');
 const {
 	join
 } = require("path"),
@@ -158,7 +159,9 @@ let funcs = {
 	help: function(msg, commands, prefix) {
 		let str = ``;
 		for (let cmd of commands) {
-			str += `${prefix}${cmd.name}: ${cmd.desc}\n`
+			if (cmd.servers.indexOf(msg.guild.id) != -1 || cmd.servers.length == 0) {
+				str += `${prefix}${cmd.name}: ${cmd.desc}\n`;
+			}
 		}
 		console.log("TEST");
 		msg.reply(str);
@@ -169,6 +172,26 @@ let funcs = {
 			m += 'bork ';
 		})
 		msg.channel.sendMessage(m);
+	},
+	idiot: function(msg) {
+		msg.channel.sendMessage("Milky is an idiot");
+	},
+	nameify: function(msg) {
+		let user = msg.author;
+		msg.channel.sendMessage(`${user} is a ${msg.content.substring(6, msg.content.length)}!`);
+	},
+	chucknorris: function(msg) {
+		request('http://api.chucknorris.io/jokes/random', (error, response, body) => {
+			if (!error && response.statusCode == 200) {
+				msg.reply(JSON.parse(body).value);
+			}
+		});
+	},
+	ban: function(msg) {
+		if (msg.member.hasPermission("ADMINISTRATOR")) {
+			let user = msg.content.split(' ').splice(1).join(' ');
+			msg.channel.sendMessage(`Banned ${user}.`);
+		}
 	}
 }
 
