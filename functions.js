@@ -169,7 +169,7 @@ let funcs = {
 	ask: function(msg) {
 		let m = '';
 		msg.content.split(' ').forEach((word) => {
-			m += 'bork ';
+			m += Math.random() < 0.5 ? 'bork ' : 'bark ';
 		})
 		msg.channel.sendMessage(m);
 	},
