@@ -16,6 +16,7 @@ const commands = [
 	new Command('item', funcs.nameify, "you are wat u say u r", ['292645209672515584', '283009672028487681']),
 	new Command('chucknorris', funcs.chucknorris, "CHUCK NORRIS"),
 	new Command('ban', funcs.ban, 'Ban the user', ['292645209672515584', '283009672028487681']),
+	new Command('code', funcs.code, 'Send source code of the bot')
 ];
 
 // Check for commands

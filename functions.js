@@ -192,6 +192,9 @@ let funcs = {
 			let user = msg.content.split(' ').splice(1).join(' ');
 			msg.channel.sendMessage(`Banned ${user}.`);
 		}
+	},
+	code: function(msg) {
+		msg.channel.sendMessage("Thank you for your interest! The code can be found here: https://github.com/Orangalo/color-bot");
 	}
 }
 
