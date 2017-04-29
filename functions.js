@@ -194,7 +194,7 @@ let funcs = {
 		}
 	},
 	code: function(msg) {
-		msg.channel.sendMessage("Thank you for your interest! The code can be found here: https://github.com/Orangalo/color-bot");
+		msg.channel.sendMessage("Thank you for your interest! The code can be found here: https://github.com/Orangalo/color-bot \nFeel free to change the code and submit a pull request!");
 	}
 }
 
