@@ -21,11 +21,11 @@ const commands = [
 
 // Check for commands
 client.on('message', msg => {
-	if (msg.content.toLowerCase().indexOf(prefix + "help") === 0) {
+	if (msg.content.toLowerCase().startsWith(prefix + "help")) {
 		funcs.help(msg, commands, prefix);
 	}
 	for (let cmd of commands) {
-		if (msg.content.toLowerCase().indexOf(prefix + cmd.name.toLowerCase()) === 0) {
+		if (msg.content.toLowerCase().startsWith(prefix + cmd.name.toLowerCase())) {
 			if (cmd.servers.length == 0) {
 				cmd.execute(msg);
 			} else if (cmd.servers.indexOf(msg.guild.id) != -1) {
